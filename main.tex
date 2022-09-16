@@ -1,0 +1,63 @@
+\documentclass{mimosis}
+
+\includeonly{
+  sources/001_title,
+  sources/002_abstract,
+  sources/003_acknowledgement,
+  sources/01_intro,
+  sources/05_conclusion,
+  sources/91_derivations,
+}
+\usepackage{shellesc}
+\input{preamble}
+
+\begin{document}
+
+\renewcommand{\bibname}{Reference}
+\def\chmoniker{Chapter}
+
+\frontmatter
+\include{sources/001_title}
+\include{sources/002_abstract}
+\include{sources/003_acknowledgement}
+\tableofcontents
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+
+\mainmatter
+
+\include{sources/01_intro}
+
+% For some reason this only works for the chapter after
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\include{sources/05_conclusion}
+
+\begin{appendices}
+  \def\chmoniker{Appendix}
+  \crefalias{chapter}{appendix}
+  \crefalias{section}{appendix}
+  \crefalias{subsection}{appendix}
+
+  \include{sources/91_derivations}
+\end{appendices}
+
+% This ensures that the subsequent sections are being included as root
+% items in the bookmark structure of your PDF reader.
+\bookmarksetup{startatroot}
+\backmatter
+
+\bibliography{main}
+\bibliographystyle{bibstyle}
+
+% \begingroup
+%   \let\clearpage\relax
+%   \glsaddall
+%   \printglossary[type=\acronymtype]
+%   % \newpage
+%   % \printglossary
+% \endgroup
+
+\printindex
+
+\end{document}

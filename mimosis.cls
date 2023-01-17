@@ -9,11 +9,11 @@
   % footinclude=false,
 }{typearea}
 
-\LoadClass[a4paper,
+\LoadClass[a5paper,
            oneside,
           %  twoside,
            openany,
-           11pt,
+           10pt,
            cleardoublepage=empty,
            numbers=noenddot,
            titlepage=firstiscover,
